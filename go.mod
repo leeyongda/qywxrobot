@@ -1,3 +1,3 @@
-module github.com/yunjuiot.com/yqwxrobot
+module github.com/yunjuiot.com/qywxrobot
 
 go 1.13
