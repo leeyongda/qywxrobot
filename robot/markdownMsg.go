@@ -69,6 +69,7 @@ func (m *MarkdownCustomContent) WriteHref(title, href string) *MarkdownCustomCon
 }
 
 func (m *MarkdownCustomContent) WriteDone() *MarkDownMsgCustomize {
+  //defer m.buf.Reset()
 	return &MarkDownMsgCustomize{
 		Markdown: MarkdownContent{
 			Content: m.buf.String(),
