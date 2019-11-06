@@ -8,7 +8,7 @@ import (
 
 func TestTextMsg_SendMsg(t *testing.T) {
 	c := NewConfig(&ConfigMsg{
-		Key:     "75aacf6f-2925-41dd-b0ad-0bb8a1a4fd7d",
+		Key:     "75aacf6f",
 		TimeOut: 10 * time.Second,
 	})
 	result, err := c.TextMsg(&TextMsg{
@@ -40,7 +40,7 @@ func TestMarkdownMsg_SendMsg(t *testing.T) {
 
 func TestMarkDownMsgCustomize_SendMsg(t *testing.T) {
 	c := NewConfig(&ConfigMsg{
-		Key:     "75aacf6f-2925-41dd-b0ad-0bb8a1a4fd7d",
+		Key:     "75aacf6f",
 		TimeOut: 10 * time.Second,
 	})
 
