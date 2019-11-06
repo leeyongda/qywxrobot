@@ -1,7 +1,7 @@
 package robot
 
 import (
-	"encoding/json"
+	"bytes"
 )
 
 var (
@@ -9,16 +9,17 @@ var (
 	msgTypeMarkdown = "markdown"
 	msgTypeNews     = "news"
 	msgTypeImage    = "image"
+	msgUrl          = "https://qyapi.weixin.qq.com/cgi-bin/webhook/send?key=%s"
 )
 
 // markdown内容，最长不超过4096个字节，必须是utf8编码
-type content struct {
+type MarkdownContent struct {
 	Content string `json:"content"`
 }
 
 type msg struct {
 	MsgType string `json:"msgtype"`
-	sendClienter
+	AllMessage
 }
 
 type Text struct {
@@ -37,10 +38,20 @@ type TextMsg struct {
 	Text `json:"text"`
 }
 
+type MarkdownCustomContent struct {
+	buf *bytes.Buffer
+	msg
+}
+
+type MarkDownMsgCustomize struct {
+	msg
+	Markdown MarkdownContent `json:"markdown"`
+}
+
 // Markdown类型
 type MarkdownMsg struct {
 	msg
-	Markdown content `json:"markdown"`
+	Markdown MarkdownContent `json:"markdown"`
 }
 
 // 图片类型消息
@@ -70,34 +81,4 @@ type NewArticles struct {
 type NewsMsg struct {
 	msg
 	News NewArticles `json:"news"`
-}
-
-func (m *msg) setMsgType(msgType string) {
-	if m != nil {
-		m.MsgType = msgType
-	}
-}
-
-func (m *msg) setClient(v sendClienter) {
-	if m != nil {
-		m.sendClienter = v
-		return
-	}
-	return
-}
-
-func (t *TextMsg) Marshal() ([]byte, error) {
-	return json.Marshal(t)
-}
-
-func (m *ImageMsg) Marshal() ([]byte, error) {
-	return json.Marshal(m)
-}
-
-func (m *MarkdownMsg) Marshal() ([]byte, error) {
-	return json.Marshal(m)
-}
-
-func (m *NewsMsg) Marshal() ([]byte, error) {
-	return json.Marshal(m)
 }
