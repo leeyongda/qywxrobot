@@ -25,7 +25,7 @@ func (m *MarkdownCustomContent) WriteH5Title(title string) *MarkdownCustomConten
 }
 
 func (m *MarkdownCustomContent) WriteH6Title(title string) *MarkdownCustomContent {
-	m.buf.WriteString(`##### ` + title + "\n")
+	m.buf.WriteString(`###### ` + title + "\n")
 	return m
 }
 
